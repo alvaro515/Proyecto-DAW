@@ -1,1 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Page02</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #121212;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .form-box {
+      background: #1e1e1e;
+      padding: 20px;
+      border-radius: 10px;
+      width: 350px;
+      margin-bottom: 40px;
+    }
+
+    .form-box h2 {
+      margin-bottom: 10px;
+    }
+
+    .form-box input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: none;
+      border-bottom: 2px solid #888;
+      background: transparent;
+      color: #fff;
+    }
+
+    .form-box button {
+      padding: 10px 15px;
+      margin: 10px 5px 0 0;
+      border: none;
+      border-radius: 5px;
+      background: #00aaff;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .form-box label {
+      display: block;
+      margin: 10px 0;
+    }
+
+    /* Card con sliders */
+    .color-card {
+      background: #1e1e1e;
+      border-radius: 12px;
+      overflow: hidden;
+      width: 350px;
+    }
+
+    .color-box {
+      height: 150px;
+      background: rgb(80,165,92);
+    }
+
+    .sliders {
+      padding: 15px;
+    }
+
+    .sliders label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 10px 0;
+      color: #ccc;
+    }
+
+    .sliders input[type="range"] {
+      flex: 1;
+      margin: 0 10px;
+    }
+
+    .sliders input[type="number"] {
+      width: 60px;
+      padding: 5px;
+      border: none;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-box">
+    <h2>Formulario</h2>
+    <!-- Ejemplo de 4 iconos SVG -->
+    <div style="display:flex; gap:10px; margin-bottom:10px;">
+      <svg width="24" height="24" fill="white"><circle cx="12" cy="12" r="10"/></svg>
+      <svg width="24" height="24" fill="white"><rect width="20" height="20" x="2" y="2"/></svg>
+      <svg width="24" height="24" fill="white"><polygon points="12,2 22,22 2,22"/></svg>
+      <svg width="24" height="24" fill="white"><line x1="2" y1="2" x2="22" y2="22" stroke="white" stroke-width="2"/></svg>
+    </div>
+
+    <input type="text" placeholder="Nombre">
+    <input type="text" placeholder="Apellido">
+    <input type="email" placeholder="Correo">
+    <label><input type="checkbox"> Acepto</label>
+    <button>Enviar</button>
+    <button type="reset">Limpiar</button>
+  </div>
+
+  <div class="color-card">
+    <div class="color-box" id="colorBox"></div>
+    <div class="sliders">
+      <label>
+        R <input type="range" min="0" max="255" value="80" id="r">
+        <input type="number" id="rVal" value="80">
+      </label>
+      <label>
+        G <input type="range" min="0" max="255" value="165" id="g">
+        <input type="number" id="gVal" value="165">
+      </label>
+      <label>
+        B <input type="range" min="0" max="255" value="92" id="b">
+        <input type="number" id="bVal" value="92">
+      </label>
+    </div>
+  </div>
+
+  <script>
+    const r = document.getElementById("r");
+    const g = document.getElementById("g");
+    const b = document.getElementById("b");
+    const rVal = document.getElementById("rVal");
+    const gVal = document.getElementById("gVal");
+    const bVal = document.getElementById("bVal");
+    const box = document.getElementById("colorBox");
+
+    function updateColor() {
+      const color = `rgb(${r.value}, ${g.value}, ${b.value})`;
+      box.style.background = color;
+      rVal.value = r.value;
+      gVal.value = g.value;
+      bVal.value = b.value;
+    }
+
+    r.addEventListener("input", updateColor);
+    g.addEventListener("input", updateColor);
+    b.addEventListener("input", updateColor);
+
+    rVal.addEventListener("input", () => { r.value = rVal.value; updateColor(); });
+    gVal.addEventListener("input", () => { g.value = gVal.value; updateColor(); });
+    bVal.addEventListener("input", () => { b.value = bVal.value; updateColor(); });
+
+    updateColor();
+  </script>
+
+</body>
+</html>
 
